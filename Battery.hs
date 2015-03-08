@@ -34,9 +34,9 @@ import Files
 
 barstotal = 10
 
-charging' = Blue [up]
-discharging' = Red [down]
-full' = Green [koppa]
+charging' = Yellow [koppa]
+discharging' = Blue ""
+full' = Green [geoequal]
 
 charging "Charging\n" = charging'
 charging "Full\n" = full'
@@ -55,13 +55,13 @@ bar :: Double -> [Color]
 bar p = let greens = truncate (p * fromIntegral barstotal) :: Int
 	    yellows = barstotal - greens :: Int
 	    yellow = if warn p then Red else Yellow
-	in [Green (replicate greens barsymbol), yellow (replicate yellows barsymbol)]
+	in [Green (replicate greens barsymbol), yellow (replicate yellows emptybarsymbol)]
 
 printBar = do
     f <- fmap read $ readFileM =<< full
     c <- fmap read $ readFileM =<< charge
     s <- fmap charging $ readFileM =<< status
-    return $ termRender s ++ " " ++ cconcat (bar $ percent f c)
+    return $ cconcat (bar $ percent f c) ++ " " ++ termRender s ++ if (length $ termRender s) > 21 then " " else ""
 
 main = do
   bar <- runErrorT printBar

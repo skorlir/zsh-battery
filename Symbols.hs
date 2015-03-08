@@ -24,7 +24,9 @@
  -}
 module Symbols where
 
-barsymbol = '▶'
+barsymbol = '▸'
+emptybarsymbol = '▹'
 up = '↑'
 down = '↓'
-koppa = 'ϟ'
+koppa = '⚡'
+geoequal = '≎'
