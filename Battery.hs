@@ -36,7 +36,7 @@ barstotal = 10
 
 charging' = Yellow [koppa]
 discharging' = Blue ""
-full' = Green [geoequal]
+full' = Blue [geoequal]
 
 charging "Charging\n" = charging'
 charging "Full\n" = full'
